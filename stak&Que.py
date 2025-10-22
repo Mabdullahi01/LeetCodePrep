@@ -171,17 +171,104 @@
 
 "Number Of Recent Calls"
 
-from collections import deque
+# from collections import deque
+#
+# class RecentCounter:
+#     def __init__(self):
+#         self.queue = deque()
+#
+#     def ping(self, t):
+#         while self.queue and self.queue[0] < t - 3000:
+#             self.queue.popleft()
+#         self.queue.append(t)
+#         return len(self.queue)
 
-class RecentCounter:
-    def __init__(self):
-        self.queue = deque()
 
-    def ping(self, t):
-        while self.queue and self.queue[0] < t - 3000:
-            self.queue.popleft()
-        self.queue.append(t)
-        return len(self.queue)
+
+# class Stack:
+#     def __init__(self):
+#         self.items = []
+#
+#     def is_empty(self):
+#         # return len(self.items) == 0
+#         return not self.items
+#
+#     def push(self, item):
+#         self.items.append(item)
+#
+#     def pop(self):
+#         return self.items.pop()
+#
+#     def peek(self):
+#         return self.items[-1]
+#
+#     def size(self):
+#         return len(self.items)
+#
+#     def __str__(self):
+#         return str(self.items)
+#
+#
+#
+# if __name__ == "__main__":
+#     s = Stack()
+#     s.push(10)
+#     s.push(20)
+#     s.push(30)
+#
+#     print("Top element:", s.peek())
+
+# class Node:
+#     def __init__(self, data):
+#         self.data = data
+#         self.next = None
+#
+# class Stack:
+#     def __init__(self):
+#         self.top = None
+#
+#     def is_empty(self):
+#         return self.top is None
+#
+#     def push(self, data):
+#         new_node = Node(data)
+#         new_node.next = self.top
+#         self.top = new_node
+#         print(f"{data} pushed to stack")
+#
+#     def pop(self):
+#         if self.is_empty():
+#             print("Stack Underflow")
+#             return None
+#         popped_data = self.top.data
+#         self.top = self.top.next
+#         return popped_data
+#
+#     def peek(self):
+#         if self.is_empty():
+#             print("Empty Stack")
+#             return None
+#         return self.top.data
+#
+#     def display(self):
+#         current = self.top
+#         print("stack (top -> bottom): ", end="")
+#
+#         while current:
+#             print(current.data, end="->")
+#             current = current.next
+#         print()
+#
+# s = Stack()
+# s.push(10)
+# s.push(20)
+# s.push(30)
+# s.display()
+#
+# print("Top element:", s.peek())
+# print("Popped element:", s.pop())
+# s.display()
+
 
 
 
