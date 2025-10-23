@@ -101,13 +101,13 @@
 
 '''Reverse an Array using Recursion'''
 
-def func(arr, i = 0):
-    n = len(arr)
-    if i >= (n//2):
-        return arr
-
-    arr[i], arr[n - i - 1] = arr[n - i - 1], arr[i]
-    return func(arr, i + 1)
+# def func(arr, i = 0):
+#     n = len(arr)
+#     if i >= (n//2):
+#         return arr
+#
+#     arr[i], arr[n - i - 1] = arr[n - i - 1], arr[i]
+#     return func(arr, i + 1)
 
 #Time: O(n) Space: O(n)
 
