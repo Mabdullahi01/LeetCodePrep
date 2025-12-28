@@ -312,10 +312,29 @@ def All_traversal(root):
     return pre_order, in_order, post_order
 
 
+'''Maximum depth of a binary Tree'''
+
+# Height will always be 1 + max(l, r)
+
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def max_depth(root):
+    if root is None:
+        return 0
+    lh = max_depth(root.left)
+    rh = max_depth(root.right)
+
+    return 1 + max(lh, rh)
+
+
 root = TreeNode(1,
-        TreeNode(2, TreeNode(3), TreeNode(4)),
-        TreeNode(5, TreeNode(6), TreeNode(7)))
+        TreeNode(2),
+        TreeNode(3, TreeNode(4, TreeNode(5)), TreeNode(6)))
 
-print(All_traversal(root))
-
+print(max_depth(root))
 
