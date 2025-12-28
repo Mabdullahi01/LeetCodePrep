@@ -1,108 +1,108 @@
 "ENCAPSULATION"
 
-# class Car:
-#     def __init__(self):
-#         self.__speed = 0
-#         self.__fuel = 100
-#
-#     def accelerate(self):
-#         if self.__fuel > 0:
-#             self.__speed += 10
-#             self.__fuel -= 5
-#             print(f"accelerating... Speed: {self.__speed} km/h, Fuel: {self.__fuel}%")
-#         else:
-#             print("Not enough fuel to accelerate!")
-#
-#     def brake(self):
-#         if self.__speed > 0:
-#             self.__speed -= 10
-#             print(f"Braking...Speed: {self.__speed} km/h")
-#         else:
-#             print("The car is already stopped.")
-#
-#     def get_speed(self):
-#         return self.__speed
-#     def get_fuel(self):
-#         return self.__fuel
-#
-# my_car = Car()
-# my_car.accelerate()
-# my_car.brake()
-#
-#
-#
-#
-# print(f"Current speed: {my_car.get_speed()} km/h")
-# print(f"Remaining fuel: {my_car.get_fuel()}%")
+class Car:
+    def __init__(self):
+        self.__speed = 0
+        self.__fuel = 100
+
+    def accelerate(self):
+        if self.__fuel > 0:
+            self.__speed += 10
+            self.__fuel -= 5
+            print(f"accelerating... Speed: {self.__speed} km/h, Fuel: {self.__fuel}%")
+        else:
+            print("Not enough fuel to accelerate!")
+
+    def brake(self):
+        if self.__speed > 0:
+            self.__speed -= 10
+            print(f"Braking...Speed: {self.__speed} km/h")
+        else:
+            print("The car is already stopped.")
+
+    def get_speed(self):
+        return self.__speed
+    def get_fuel(self):
+        return self.__fuel
+
+my_car = Car()
+my_car.accelerate()
+my_car.brake()
 
 
-# 'INHERITANCE'
-#
-# class Vehicle:
-#     def __init__(self, engine):
-#         self.engine = engine
-#
-#     def start(self):
-#         print(f"The {self.engine} engine is starting...")
-#
-# class Car(Vehicle):
-#     def __init__(self, engine, doors):
-#         #super().__init__(engine)
-#         # OR
-#         Vehicle.__init__(self, engine)
-#         self.doors = doors
-#
-#     def honk(self):
-#         print("Car honk: Beep beep")
-#
-# class Bike(Vehicle):
-#     def __init__(self, engine, type_of_handlebar):
-#         super().__init__(engine)
-#         self.type_of_handlebar = type_of_handlebar
-#
-#     def ring_bell(self):
-#         print("Bike bell: Ring ring!")
-#
-# my_car = Car("V8", 4)
-# my_bike = Bike("500cc", "straight")
-#
-# my_car.honk()
-# my_car.start()
-#
-# my_bike.start()
-# my_bike.ring_bell()
-#
-# print(my_car.doors)
-# print(my_bike.type_of_handlebar)
-#
-# my_vehicle = Vehicle("E60")
-# my_vehicle.start()
+
+
+print(f"Current speed: {my_car.get_speed()} km/h")
+print(f"Remaining fuel: {my_car.get_fuel()}%")
+
+
+'INHERITANCE'
+
+class Vehicle:
+    def __init__(self, engine):
+        self.engine = engine
+
+    def start(self):
+        print(f"The {self.engine} engine is starting...")
+
+class Car(Vehicle):
+    def __init__(self, engine, doors):
+        #super().__init__(engine)
+        # OR
+        Vehicle.__init__(self, engine)
+        self.doors = doors
+
+    def honk(self):
+        print("Car honk: Beep beep")
+
+class Bike(Vehicle):
+    def __init__(self, engine, type_of_handlebar):
+        super().__init__(engine)
+        self.type_of_handlebar = type_of_handlebar
+
+    def ring_bell(self):
+        print("Bike bell: Ring ring!")
+
+my_car = Car("V8", 4)
+my_bike = Bike("500cc", "straight")
+
+my_car.honk()
+my_car.start()
+
+my_bike.start()
+my_bike.ring_bell()
+
+print(my_car.doors)
+print(my_bike.type_of_handlebar)
+
+my_vehicle = Vehicle("E60")
+my_vehicle.start()
 
 "POLYMORPHISM"
-# class Circle:
-#     def draw(self):
-#         print("Drawing a circle")
-#
-# class Square:
-#     def draw(self):
-#         print("Drawing a square")
-#
-# class Triangle:
-#     def draw(self):
-#         print("Drawing a triangle")
-#
-# # Polymorphism in action
-# def render_shape(shape):
-#     shape.draw()
-#
-# # Usage
-# circle = Circle()
-# square = Square()
-# triangle = Triangle()
-#
-# render_shape(circle)
-# render_shape(square)
-# render_shape(triangle)
+class Circle:
+    def draw(self):
+        print("Drawing a circle")
+
+class Square:
+    def draw(self):
+        print("Drawing a square")
+
+class Triangle:
+    def draw(self):
+        print("Drawing a triangle")
+
+# Polymorphism in action
+def render_shape(shape):
+    shape.draw()
+
+# Usage
+circle = Circle()
+square = Square()
+triangle = Triangle()
+
+render_shape(circle)
+render_shape(square)
+render_shape(triangle)
 
 
 
@@ -111,152 +111,152 @@
 
 
 
-# from abc import ABC, abstractmethod
-#
-# class Shape(ABC):
-#     @abstractmethod
-#     def area(self):
-#         pass
-#
-#     @abstractmethod
-#     def perimeter(self):
-#         pass
-#
-#
-# class Square(Shape):
-#     def __init__(self, length):
-#         self.length = length
-#
-#     def area(self):
-#         return self.length ** 2
-#
-#     def perimeter(self):
-#         return 4 * self.length
-#
-#
-# class Rectangle(Shape):
-#     def __init__(self, width, height):
-#         self.width = width
-#         self.height = height
-#
-#     def area(self):
-#         return self.width * self.height
-#
-#     def perimeter(self):
-#         return 2 * (self.width + self.height)
-#
-#
-# square = Square(5)
-# rectangle = Rectangle(4, 6)
-#
-# print(f"Square area: {square.area()}, perimeter: {square.perimeter()}")
-# print(f"Rectangle area: {rectangle.area()}, perimeter: {rectangle.perimeter()}")
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+    @abstractmethod
+    def perimeter(self):
+        pass
+
+
+class Square(Shape):
+    def __init__(self, length):
+        self.length = length
+
+    def area(self):
+        return self.length ** 2
+
+    def perimeter(self):
+        return 4 * self.length
+
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+
+
+square = Square(5)
+rectangle = Rectangle(4, 6)
+
+print(f"Square area: {square.area()}, perimeter: {square.perimeter()}")
+print(f"Rectangle area: {rectangle.area()}, perimeter: {rectangle.perimeter()}")
 
 
 
-# from abc import ABC, abstractmethod
+from abc import ABC, abstractmethod
+
+# Encapsulation & Inheritance
+class Animal(ABC):
+    def __init__(self, name, age=0):
+        self._name = name      # Encapsulated attributes with protected access
+        self.__age = age  # Using a single underscore to indicate protected variables
+
+    @abstractmethod  # This is what allows us to do polymorphism
+    def sound(self):           # Abstract method, will be overridden in subclasses
+        pass
+
+    def info(self):
+        return f"{self._name} is {self.__age} years old."
 #
-# # Encapsulation & Inheritance
-# class Animal(ABC):
-#     def __init__(self, name, age=0):
-#         self._name = name      # Encapsulated attributes with protected access
-#         self.__age = age  # Using a single underscore to indicate protected variables
-#
-#     @abstractmethod  # This is what allows us to do polymorphism
-#     def sound(self):           # Abstract method, will be overridden in subclasses
-#         pass
-#
-#     def info(self):
-#         return f"{self._name} is {self.__age} years old."
-# #
-# # # Inheritance
-# class Lion(Animal):
-#     def sound(self):
-#         return "Roar!"         # Polymorphism - specific implementation of sound for Lion
-#
-# class Elephant(Animal):
-#     def sound(self):
-#         return "Trumpet!"      # Polymorphism - specific implementation of sound for Elephant
-#
-# class Zoo:
-#     def __init__(self):
-#         self._animals = []     # Encapsulated list of animals
-#
-#     def add_animal(self, animal):
-#         if isinstance(animal, Animal):
-#             self._animals.append(animal)
-#             print(f"{animal._name} has been added to the zoo.")
-#         else:
-#             print("Only animals can be added to the zoo.")
-#
-#     def show_sounds(self):
-#         for animal in self._animals:
-#             print(f"{animal._name} says: {animal.sound()}")
-#
-# # Demonstrating OOP Principles
-# zoo = Zoo()
-# leo = Lion("Leo")
-# dumbo = Elephant("Dumbo", 10)
-#
-# zoo.add_animal(leo)
-# zoo.add_animal(dumbo)
-#
-#
-# print(leo.info())
-# print(dumbo.info())
-#
-# # Polymorphism - different animals respond differently to sound
-# zoo.show_sounds()
-# print(zoo._animals[0]._name)
+# # Inheritance
+class Lion(Animal):
+    def sound(self):
+        return "Roar!"         # Polymorphism - specific implementation of sound for Lion
+
+class Elephant(Animal):
+    def sound(self):
+        return "Trumpet!"      # Polymorphism - specific implementation of sound for Elephant
+
+class Zoo:
+    def __init__(self):
+        self._animals = []     # Encapsulated list of animals
+
+    def add_animal(self, animal):
+        if isinstance(animal, Animal):
+            self._animals.append(animal)
+            print(f"{animal._name} has been added to the zoo.")
+        else:
+            print("Only animals can be added to the zoo.")
+
+    def show_sounds(self):
+        for animal in self._animals:
+            print(f"{animal._name} says: {animal.sound()}")
+
+# Demonstrating OOP Principles
+zoo = Zoo()
+leo = Lion("Leo")
+dumbo = Elephant("Dumbo", 10)
+
+zoo.add_animal(leo)
+zoo.add_animal(dumbo)
 
 
-#
-#
-#
-# class Node:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
-#
-#
-#
-# def reverseLinkedList(head: Node):
-#     if not head:
-#         return head
-#
-#     prev = None
-#     next_node = head.next
-#
-#     return prev
-# from collections import deque
-#
-#
-# class RecentCounter:
-#
-#     def __init__(self):
-#         self.queue = deque()
-#
-#     def ping(self, t: int) -> int:
-#         while self.queue and self.queue[0] < t - 3000:
-#             self.queue.popleft()
-#         self.queue.append(t)
-#         return len(self.queue)
-#
-#
-# counter = RecentCounter()
-# print(counter.ping(20))
-# print(counter.ping(50))
-# print(counter.ping(70))
-# print(counter.ping(90))
-# print(counter.ping(200))
-# print(counter.ping(600))
-# print(counter.ping(2000))
-# print(counter.ping(2500))
-# print(counter.ping(3500))
-# print(counter.ping(5000))
-#
-# [20, 50, 70, 90, 200, 600, 2000, 2500, 3500, 5000]
-# [2000, 5000]
+print(leo.info())
+print(dumbo.info())
+
+# Polymorphism - different animals respond differently to sound
+zoo.show_sounds()
+print(zoo._animals[0]._name)
+
+
+
+
+
+class Node:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+
+def reverseLinkedList(head: Node):
+    if not head:
+        return head
+
+    prev = None
+    next_node = head.next
+
+    return prev
+from collections import deque
+
+
+class RecentCounter:
+
+    def __init__(self):
+        self.queue = deque()
+
+    def ping(self, t: int) -> int:
+        while self.queue and self.queue[0] < t - 3000:
+            self.queue.popleft()
+        self.queue.append(t)
+        return len(self.queue)
+
+
+counter = RecentCounter()
+print(counter.ping(20))
+print(counter.ping(50))
+print(counter.ping(70))
+print(counter.ping(90))
+print(counter.ping(200))
+print(counter.ping(600))
+print(counter.ping(2000))
+print(counter.ping(2500))
+print(counter.ping(3500))
+print(counter.ping(5000))
+
+[20, 50, 70, 90, 200, 600, 2000, 2500, 3500, 5000]
+[2000, 5000]
 
 
 
