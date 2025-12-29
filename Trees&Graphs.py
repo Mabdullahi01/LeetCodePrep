@@ -312,7 +312,13 @@ def All_traversal(root):
     return pre_order, in_order, post_order
 
 
-'''Maximum depth of a binary Tree'''
+
+
+
+
+
+'''Maximum depth of a binary Tree
+Given the root of a binary tree, find the length of the longest path from the root to a leaf.'''
 
 # Height will always be 1 + max(l, r)
 
@@ -332,9 +338,37 @@ def max_depth(root):
     return 1 + max(lh, rh)
 
 
-root = TreeNode(1,
-        TreeNode(2),
-        TreeNode(3, TreeNode(4, TreeNode(5)), TreeNode(6)))
 
-print(max_depth(root))
+
+
+'''Check for Balanced Binary Tree'''
+'''This solution was built upon the maximum depth of binary tree solution, which enables us to keep a time complexity of O(N)'''
+
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
+def isBalanced(root):
+    return max_depth(root) != -1
+
+
+def max_depth(root):
+    if root is None:
+        return 0
+
+    left_height = max_depth(root.left)
+    if left_height == -1: return -1
+
+    right_height = max_depth(root.right)
+    if right_height == -1: return -1
+
+    if abs(left_height - right_height) > 1:
+        return -1
+
+    return 1 + max(left_height, right_height)
+
 
