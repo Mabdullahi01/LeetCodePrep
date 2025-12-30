@@ -336,6 +336,8 @@ def max_depth(root):
     rh = max_depth(root.right)
 
     return 1 + max(lh, rh)
+# Time complexity O(N)
+# Space complexity O(N)
 
 
 
@@ -344,6 +346,7 @@ def max_depth(root):
 '''Check for Balanced Binary Tree'''
 '''This solution was built upon the maximum depth of binary tree solution, which enables us to keep a time complexity of O(N)'''
 
+# The absolute Difference between left height and right height must be less or equal to 1
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -353,22 +356,101 @@ class TreeNode:
 
 
 def isBalanced(root):
-    return max_depth(root) != -1
+    return balance_Check(root) != -1
 
 
-def max_depth(root):
+def balance_Check(root):
     if root is None:
         return 0
 
-    left_height = max_depth(root.left)
+    left_height = balance_Check(root.left)
     if left_height == -1: return -1
 
-    right_height = max_depth(root.right)
+    right_height = balance_Check(root.right)
     if right_height == -1: return -1
 
     if abs(left_height - right_height) > 1:
         return -1
 
     return 1 + max(left_height, right_height)
+
+root = TreeNode(1,
+        TreeNode(2,
+            TreeNode(3,
+                TreeNode(4),
+                None
+            ),
+            None
+        ),
+        TreeNode(5)
+)
+
+# Time complexity is O(N)
+# Space complexity is O(N)
+
+
+
+
+
+'''Diameter of a Binary Tree'''
+
+'''Given the root of a binary tree, return the length of the diameter of the tree.'''
+'''The diameter of a binary tree is the length of the longest path between any two nodes in a tree. 
+    This path may or may not pass through the root.'''
+
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+def diameterOfBinaryTree(root):
+    diameter = [0]  # using list as parameter
+    height(root, diameter)
+    return diameter[0]
+
+def height(node, diameter):
+    if node is None:
+        return 0
+    lh = height(node.left, diameter)
+    rh = height(node.right, diameter)
+
+    diameter[0] = max( diameter[0], lh + rh)
+
+    return 1 + max(lh, rh)
+
+'''OR using instance variable'''
+
+
+class Solution:
+    def diameterOfBinaryTree(self, root):
+        self.diameter = 0  # Instance variable
+        self.height(root)
+        return self.diameter
+
+    def height(self, node):
+        if not node:
+            return 0
+
+        lh = self.height(node.left)
+        rh = self.height(node.right)
+
+        self.diameter = max(self.diameter, lh + rh)
+
+        return 1 + max(lh, rh)
+
+
+#Time complexity is O(N)
+#Space complexity is O(h), where h is the height of the tree, in best case O(log n)
+
+
+
+
+
+
+
+
+
+
 
 
