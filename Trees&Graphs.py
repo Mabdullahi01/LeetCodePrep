@@ -374,16 +374,6 @@ def balance_Check(root):
 
     return 1 + max(left_height, right_height)
 
-root = TreeNode(1,
-        TreeNode(2,
-            TreeNode(3,
-                TreeNode(4),
-                None
-            ),
-            None
-        ),
-        TreeNode(5)
-)
 
 # Time complexity is O(N)
 # Space complexity is O(N)
@@ -442,6 +432,84 @@ class Solution:
 
 #Time complexity is O(N)
 #Space complexity is O(h), where h is the height of the tree, in best case O(log n)
+
+
+'''Maximum path sum of a binary tree'''
+
+'''A path in a binary tree is a sequence of nodes where each pair of adjacent nodes in the sequence has an edge connecting them. 
+A node can only appear in the sequence at most once. Note that the path does not need to pass through the root'''
+
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def maxPathSum(self, root):
+        self.maxValue = float('-inf')
+        self.maxPathDown(root)
+        return self.maxValue
+
+    def maxPathDown(self, node):
+        if node is None:
+            return 0
+
+        left_sum = max(0, self.maxPathDown(node.left)) # ignores negative nodes
+        right_sum = max(0, self.maxPathDown(node.right)) # ignores negative nodes
+
+        self.maxValue = max(self.maxValue, node.val + left_sum + right_sum)
+
+        return node.val + max(left_sum, right_sum)
+
+# class Solution:
+#     def maxPathSum(self, root):
+#         # Using list to hold max value (mutable container)
+#         max_value = [float('-inf')]
+#         self.maxPathDown(root, max_value)
+#         return max_value[0]
+#
+#     def maxPathDown(self, node,max_value):
+#         if node is None:
+#             return 0
+#
+#         # Using max(0, ...) to ignore negative paths
+#         left = max(0, self.maxPathDown(node.left, max_value))
+#         right = max(0, self.maxPathDown(node.right, max_value))
+#
+#         max_value[0] = max(max_value[0], left + right + node.val)
+#
+#         return max(left, right) + node.val
+
+
+
+root = TreeNode(15,
+        TreeNode(10),
+        TreeNode(20, TreeNode(-30), TreeNode(-15)))
+solution = Solution()
+
+print(solution.maxPathSum(root))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
