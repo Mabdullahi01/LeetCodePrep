@@ -484,29 +484,77 @@ class Solution:
 
 
 
-root = TreeNode(15,
-        TreeNode(10),
-        TreeNode(20, TreeNode(-30), TreeNode(-15)))
-solution = Solution()
-
-print(solution.maxPathSum(root))
 
 
+'''Check for Identical Trees'''
 
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
+def isSameTree(rootp, rootq):
+    if (rootp is None) or (rootq is None):
+        return (rootp == rootq)
 
-
-
-
-
-
-
+    return (rootp.val == rootq.val) and isSameTree(rootp.left, rootq.left) and isSameTree(rootp.right, rootq.right)
 
 
 
 
+'''Binary Tree Zigzag Traversal'''
 
 
+
+from collections import deque
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def zigzagLevelOrder(root):
+    if not root:
+        return []
+
+    result = []
+    queue = deque([root])
+    left_to_right = True
+
+    while queue:
+        size = len(queue)
+        row = [0] * size
+
+        for i in range(size):
+            node = queue.popleft()
+
+            index = i if left_to_right else (size - 1 -i)
+
+            row[index] = node.val
+
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+
+        result.append(row)
+        left_to_right = not left_to_right
+
+    return result
+
+# Time complexity is O(N)
+# Space complexity is O(N)
+
+
+
+root = TreeNode(1,
+        TreeNode(2, TreeNode(4), TreeNode(5)),
+        TreeNode(3, None, TreeNode(6)))
+
+
+print(zigzagLevelOrder(root))
 
 
 
