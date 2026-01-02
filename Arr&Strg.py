@@ -566,6 +566,34 @@ def plusOne(digits):
 
     return [1] + digits
 
+'''Neetcode 1'''
+'''Given an integer array nums, return true if any value appears at least twice in the array and return false if every element is distinct'''
+
+# nums = [1, 2, 3, 1]  output: true
+
+def containsDuplicate(nums):
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[j] == nums[i]:
+                return True
+    return False
+# Time complexity: O(n^2)
+#Space complexity: O(1)
+
+def containsDuplicate(nums):
+    hashset = set()
+
+    for num in nums:
+        if num in hashset:
+            return True
+        hashset.add(num)
+    return False
+# Time complexity: O(n)
+#Space complexity: O(n)
+
+
+
+
 
 
 

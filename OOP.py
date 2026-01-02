@@ -243,20 +243,7 @@ class RecentCounter:
         return len(self.queue)
 
 
-counter = RecentCounter()
-print(counter.ping(20))
-print(counter.ping(50))
-print(counter.ping(70))
-print(counter.ping(90))
-print(counter.ping(200))
-print(counter.ping(600))
-print(counter.ping(2000))
-print(counter.ping(2500))
-print(counter.ping(3500))
-print(counter.ping(5000))
 
-[20, 50, 70, 90, 200, 600, 2000, 2500, 3500, 5000]
-[2000, 5000]
 
 
 

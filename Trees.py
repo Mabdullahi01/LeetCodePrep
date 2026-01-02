@@ -504,7 +504,8 @@ def isSameTree(rootp, rootq):
 
 
 '''Binary Tree Zigzag Traversal'''
-
+'''Given the root of a binary tree, return the zigzag level order traversal of its nodes' values. 
+(i.e., from left to right, then right to left for the next level and alternate between).'''
 
 
 from collections import deque
@@ -548,13 +549,9 @@ def zigzagLevelOrder(root):
 # Space complexity is O(N)
 
 
+'''Boundary of Binary Tree'''
+'''The boundary of a binary tree is the concatenation of the root, the left boundary, the leaves ordered from left-to-right, and the reverse order of the right boundary.'''
 
-root = TreeNode(1,
-        TreeNode(2, TreeNode(4), TreeNode(5)),
-        TreeNode(3, None, TreeNode(6)))
-
-
-print(zigzagLevelOrder(root))
 
 
 
