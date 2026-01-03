@@ -688,7 +688,18 @@ column, and R and C are equal if we consider them as 1D arrays'''
 # Space complexity is O(n^2)
 
 
+'''NeetCode 3'''
+'''Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target'''
 
+#nums = [2,7,11,15], target = 9
+
+def TwoSum(nums, target):
+    n = len(nums)
+    for i in range(n):
+        for j in range(i+1, n):
+            if nums[i] + nums[j] == target:
+                return [i, j]
+    return []
 
 
 
