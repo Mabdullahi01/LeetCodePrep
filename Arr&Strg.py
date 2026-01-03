@@ -591,7 +591,68 @@ def containsDuplicate(nums):
 # Time complexity: O(n)
 #Space complexity: O(n)
 
+'''NeetCode 2'''
 
+''' Valid Anagram
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.'''
+# s = "anagram", t = "nagaram"
+
+from collections import defaultdict
+
+def isAnagram(s, t):
+    if len(s) != len(t):
+        return False
+
+    dict1 = defaultdict(int)
+    dict2 = defaultdict(int)
+
+    for i in s:
+        dict1[i] += 1
+        # if i in dict1:, we didn't need to perform this check because we're using defaultdict, we will if we use just an hashmap({})
+        #     dict1[i] += 1
+        # else:
+        #     dict1[i] = 1
+    for j in t:
+        dict2[j] += 1
+
+    return dict1 == dict2
+
+# Time complexity is O(n), Two seperate loops for counting
+# Space complexity is O(1), At most 26keys in dictionary
+
+def isAnagram(s, t):
+    if len(s) != len(t):
+        return False
+
+    dict1 = {}
+    dict2 = {}
+
+    for i in s:
+        dict1[i] = dict1.get(i, 0) + 1
+    for j in t:
+        dict2[j] = dict1.get(j, 0) + 1
+
+    return dict1 == dict2
+
+
+
+'Using Fixed Array size'
+
+def isAnagram(s, t):
+    if len(s) != len(t):
+        return False
+    arr = [0] * 26
+
+    for i in s:
+        arr[ord(i) - ord('a')] += 1
+    for i in t:
+        arr[ord(i) - ord('a')] -= 1
+        if arr[ord(i) - ord('a')] < 0:
+            return False
+    return True
+
+# Time complexity is O(n)
+# Space complexity is O(1)
 
 
 
