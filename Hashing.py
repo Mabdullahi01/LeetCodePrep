@@ -701,6 +701,27 @@ def TwoSum(nums, target):
                 return [i, j]
     return []
 
+# Time complexity: O(n^2)
+# Space complexity: O(1)
+
+# Using Hashmap
+
+def TwoSum(nums, target):
+    n = len(nums)
+    hashmap = {}
+
+
+    for i in range(n):
+        compliment = target - nums[i]
+        if compliment in hashmap:
+            return [hashmap[compliment], i]
+        hashmap[nums[i]] = i
+    return
+
+
+# Time complexity: O(n)
+# Space complexity: O(n)
+
 
 
 
