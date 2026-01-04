@@ -617,9 +617,10 @@ def isAnagram(s, t):
 
     return dict1 == dict2
 
-# Time complexity is O(n), Two seperate loops for counting
-# Space complexity is O(1), At most 26keys in dictionary
+# Time complexity is O(n+m), Two seperate loops for counting
+# Space complexity is O(n) or O(1), At most 26keys in dictionary
 
+'Using regular dict/ hashmap'
 def isAnagram(s, t):
     if len(s) != len(t):
         return False
@@ -634,6 +635,28 @@ def isAnagram(s, t):
 
     return dict1 == dict2
 
+'Using single hashmap'
+
+def isAnagram(s, t):
+    if len(s) != len(t):
+        return False
+
+    hashMap = {}
+
+    for char in s:
+        hashMap[char] = hashMap.get(char, 0) + 1
+
+    for char in t:
+        if char not in hashMap:
+            return False
+        hashMap[char] -= 1
+        if hashMap[char] < 0:
+            return False
+
+    return True
+
+#Time: O(n+m)
+#Space: O(n), only one Hashmap
 
 
 'Using Fixed Array size'
@@ -652,11 +675,11 @@ def isAnagram(s, t):
     return True
 
 # Time complexity is O(n)
-# Space complexity is O(1)
+# Space complexity is O(26)
 
 
 
-
+'''NeetCode 4'''
 
 
 
