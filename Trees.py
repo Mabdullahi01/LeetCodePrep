@@ -550,8 +550,67 @@ def zigzagLevelOrder(root):
 
 
 '''Boundary of Binary Tree'''
-'''The boundary of a binary tree is the concatenation of the root, the left boundary, the leaves ordered from left-to-right, and the reverse order of the right boundary.'''
+'''The boundary of a binary tree is the concatenation of the root, the left boundary, 
+the leaves ordered from left-to-right, and the reverse order of the right boundary.'''
 
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def is_leaf(node):
+    return node.left is None and node.right is None
+
+def boundaryOfBinaryTree(root):
+    res = []
+    if not root:
+        return res
+    if not is_leaf(root):
+        res.append(root.val)
+
+    add_left_boundary(root, res)
+    add_leaves(root, res)
+    add_right_boundary(root, res)
+
+    return res
+
+def add_left_boundary(root, res):
+    cur = root.left
+    while(cur):
+        if not is_leaf(cur):
+            res.append(cur.val)
+        if cur.left:
+            cur = cur.left
+        else:
+            cur = cur.right
+
+def add_right_boundary(root, res):
+    cur = root.right
+    tmp = []
+
+    while cur:
+        if not is_leaf(cur):
+            tmp.append(cur.val)
+
+        if cur.right:
+            cur = cur.right
+        else:
+            cur = cur.left
+
+    for i in range(len(tmp) - 1, -1, -1):
+        res.append(tmp[i])
+
+def add_leaves(root, res):
+    if is_leaf(root):
+        res.append(root.val)
+        return
+
+    if root.left:
+        add_leaves(root.left, res)
+    if root.right:
+        add_leaves(root.right, res)
 
 
 
