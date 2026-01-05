@@ -722,6 +722,21 @@ def TwoSum(nums, target):
 # Time complexity: O(n)
 # Space complexity: O(n)
 
+'''NeetCode 4'''
+'''Group Anagrams
+Given an array of strings strs, group the anagrams together. You can return the answer in any order.'''
+
+#Input: strs = ["eat","tea","tan","ate","nat","bat"]
+#Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+from collections import defaultdict
+
+def groupAnagrams(strs):
+    hashMap = defaultdict(list)
+
+    for s in strs:
+        key = "".join(sorted(s))
+        hashMap[key].append(s)
+    return hashMap.keys()
 
 
 
@@ -738,6 +753,25 @@ def TwoSum(nums, target):
 
 
 
+
+
+
+#Time complexity: O(n.mlogm) where n is the number/length of string, and m is the average length of each string
+# Space: O(n.m)
+
+#USING COUNT
+# from collections import defaultdict
+# def groupAnagrams(strs):
+#     hashmap = defaultdict(list)
+#     for s in strs:
+#         count = [0] * 26
+#         for c in s:
+#             count[ord(c) - ord('a')] += 1
+#         hashmap[tuple(count)].append(s)
+#
+#     return hashmap.values()
+#
+# print(groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
 
 
 
