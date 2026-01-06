@@ -729,51 +729,49 @@ Given an array of strings strs, group the anagrams together. You can return the 
 #Input: strs = ["eat","tea","tan","ate","nat","bat"]
 #Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
 from collections import defaultdict
-
+'''USING SORT'''
 def groupAnagrams(strs):
     hashMap = defaultdict(list)
 
     for s in strs:
         key = "".join(sorted(s))
         hashMap[key].append(s)
-    return hashMap.keys()
+    return list(hashMap.values())
+
+def groupAnagrams(strs):
+    hashMap = {}
+
+    for s in strs:
+        key = ''.join(sorted(s))
+        if key not in hashMap:
+            hashMap[key] = []
+
+        hashMap[key].append(s)
+    return hashMap.values()
+
+#Time complexity: O(n*mlogm) where n is the number of strings, and m is the average length of each string
+#Space: O(n*m) hashmap stores all n strings, each string has length <= m
+
+'''USING COUNT'''
 
 
+def groupAnagrams(strs):
+    hashMap = {}
+    for s in strs:
+        arr = [0] * 26
+        for i in s:
+            arr[ord(i) - ord('a')] += 1
 
+        key = tuple(arr)
+        if key not in hashMap:
+            hashMap[key] = []
+        hashMap[key].append(s)
+    return hashMap.values()
+print(groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#Time complexity: O(n.mlogm) where n is the number/length of string, and m is the average length of each string
-# Space: O(n.m)
-
-#USING COUNT
-# from collections import defaultdict
-# def groupAnagrams(strs):
-#     hashmap = defaultdict(list)
-#     for s in strs:
-#         count = [0] * 26
-#         for c in s:
-#             count[ord(c) - ord('a')] += 1
-#         hashmap[tuple(count)].append(s)
-#
-#     return hashmap.values()
-#
-# print(groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
-
-
+#Time complexity: O(n*m) The inner for loop O(m) and outer loop is O(n)
+#Space complexity: O(n*m).  hashmap stores all n strings, with each average length m, Temporary count O(1) for the array
+# and in worst case the tuple contains all unique keys which is O(n * 26), overall O(n*m) + O(1) + O(n * 26) = O(n*m)
 
 
 
