@@ -1,27 +1,27 @@
-from heapq import *
-
-
-heap = []
-
-heappush(heap, 1)
-heappush(heap, 2)
-heappush(heap, 3)
-
-heap[0], # outputs 1, as python implements min heap by default
-heappop(heap) # pop the min
-
-len(heap) # length of heap
-
-import heapq
-nums = [43, 2, 13, 634, 120]
-heapq.heapify(nums)
-# print(nums)
-# print(nums[0])
-
-heap = [67, 341, 234, -67, 12, -976]
-heapq.heapify(heap)
-heapq.heappush(heap, 7451)
-heapq.heappush(heap, -5352)
+# from heapq import *
+#
+#
+# heap = []
+#
+# heappush(heap, 1)
+# heappush(heap, 2)
+# heappush(heap, 3)
+#
+# heap[0], # outputs 1, as python implements min heap by default
+# heappop(heap) # pop the min
+#
+# len(heap) # length of heap
+#
+# import heapq
+# nums = [43, 2, 13, 634, 120]
+# heapq.heapify(nums)
+# # print(nums)
+# # print(nums[0])
+#
+# heap = [67, 341, 234, -67, 12, -976]
+# heapq.heapify(heap)
+# heapq.heappush(heap, 7451)
+# heapq.heappush(heap, -5352)
 # print(heap)
 
 # while heap:
@@ -94,6 +94,30 @@ def halveArray(nums):
 
 # Time complexity: O(NlogN)
 # Space complexity: O(N)
+
+
+'''Remove stones to Minimize the Total'''
+'''You are given a 0-indexed integer array piles, where piles[i] represents the number of stones in the ith pile, and an integer k. 
+You should apply the following operation exactly k times:
+Choose any piles[i] and remove floor(piles[i] / 2) stones from it.'''
+
+#input: piles = [5,4,9], k = 2
+#Output: 12
+import heapq
+
+def minStoneSum(piles, k):
+    piles = [-pile for pile in piles]
+
+    heapq.heapify(piles)
+
+    while k > 0:
+        maxheap = heapq.heappop(piles)
+        heapq.heappush(piles, (maxheap // 2))
+        k -= 1
+    return abs(sum(piles))
+
+print(minStoneSum([5, 4, 9], 2))
+
 
 
 
