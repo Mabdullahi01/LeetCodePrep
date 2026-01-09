@@ -106,17 +106,49 @@ Choose any piles[i] and remove floor(piles[i] / 2) stones from it.'''
 import heapq
 
 def minStoneSum(piles, k):
-    piles = [-pile for pile in piles]
+    heap = [-pile for pile in piles]
 
-    heapq.heapify(piles)
+    heapq.heapify(heap)
 
     while k > 0:
-        maxheap = heapq.heappop(piles)
-        heapq.heappush(piles, (maxheap // 2))
+        maxheap = heapq.heappop(heap)
+        heapq.heappush(heap, (maxheap // 2)) # This is because -9 // 2 directly rounds down to -5, so we don't need another subtraction operation
         k -= 1
-    return abs(sum(piles))
+    return -sum(heap)
 
-print(minStoneSum([5, 4, 9], 2))
+#Time complexity: O(n + klogn)
+#Space complexity: O(n)
+
+
+
+'''Minimum Cost to Connect Sticks'''
+'''You have some number of sticks with positive integer lengths. These lengths are given as an array sticks, where sticks[i] is the length of the ith stick.'''
+'''You can connect any two sticks of lengths x and y into one stick by paying a cost of x + y. 
+You must connect all the sticks until there is only one stick remaining.
+
+Return the minimum cost of connecting all the given sticks into one stick in this way.'''
+#Input: sticks = [2,4,3]
+#Output: 14
+# 2+3=5---[5,4], 5+4=9---[9]
+# 5+9=14
+import heapq
+
+def connectSticks(sticks):
+    heapq.heapify(sticks)
+    cost = 0
+    while (len(sticks) > 1):
+        firstMin = heapq.heappop(sticks)
+        SecondMin = heapq.heappop(sticks)
+        cost += (firstMin + SecondMin)
+        heapq.heappush(sticks, (firstMin + SecondMin))
+
+    return cost
+
+#Time complexity: O(NlogN)
+#Space complexity: O(N)
+
+
+
 
 
 
