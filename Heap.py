@@ -153,32 +153,61 @@ def connectSticks(sticks):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 '''NeetCode5'''
 '''Top K Frequent Elements
 Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
 '''
-
 #Input: nums = [1,2,1,2,1,2,3,1,3,2], k = 2
 #Output: [1,2]
+
+
+'''with Bucket Sort'''
+def topKFrequent(nums, k):
+    if k == len(nums):
+        return nums
+
+    hashMap = {}
+
+    val = [[] for i in range(len(nums) + 1)]
+
+    for n in nums:
+        hashMap[n] = hashMap.get(n, 0) + 1
+
+    for n, c in hashMap.items():
+        val[c].append(n)
+
+    res = []
+    for i in range(len(val) - 1, 0, -1):
+        for n in val[i]:
+            res.append(n)
+            if len(res) == k:
+                return res
+
+print(topKFrequent([1,2,1,2,1,2,3,1,3,2], 3))
+
+#Time complexity: O(n)
+#Space complexity: O(n)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
