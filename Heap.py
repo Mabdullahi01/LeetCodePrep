@@ -170,11 +170,11 @@ def topKFrequent(nums, k):
 
     val = [[] for i in range(len(nums) + 1)]
 
-    for n in nums:
-        hashMap[n] = hashMap.get(n, 0) + 1
+    for key in nums:
+        hashMap[key] = hashMap.get(key, 0) + 1
 
-    for n, c in hashMap.items():
-        val[c].append(n)
+    for key, index in hashMap.items(): # The value here simply means 'index'
+        val[index].append(key)
 
     res = []
     for i in range(len(val) - 1, 0, -1):
@@ -183,17 +183,33 @@ def topKFrequent(nums, k):
             if len(res) == k:
                 return res
 
-print(topKFrequent([1,2,1,2,1,2,3,1,3,2], 3))
 
 #Time complexity: O(n)
 #Space complexity: O(n)
 
 
 
+'''With Heap'''
+from collections import Counter
+import heapq
+
+def topKFrequent(nums, k):
+
+    counts = Counter(nums)
+    heap = []
+
+
+    for key, val in counts.items():
+        heapq.heappush(heap, (val, key))
+        if len(heap) > k:
+            heapq.heappop(heap)
+
+    return[pair[1] for pair in heap]
 
 
 
-
+#Time complexity: O(n*logk) since the size of the heap never exceeds k
+#Space complexity: O(n + k)
 
 
 
