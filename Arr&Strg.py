@@ -679,9 +679,33 @@ def isAnagram(s, t):
 
 
 
-'''NeetCode 4'''
+'''NeetCode 6'''
+'''Product of Array Except Self'''
+'''Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].'''
+
+def productExceptSelf(nums):
+
+        length = len(nums)
+
+        L, R, answer = [0] * length, [0] * length, [0] * length
+
+        L[0] = 1
+        for i in range(1, length):
+            L[i] = nums[i - 1] * L[i - 1]
 
 
+        R[length - 1] = 1
+        for i in reversed(range(length - 1)):
+            R[i] = nums[i + 1] * R[i + 1]
+
+
+        for i in range(length):
+            answer[i] = L[i] * R[i]
+
+        return answer
+
+# Time: O(n)
+# Space: O(n)
 
 
 
