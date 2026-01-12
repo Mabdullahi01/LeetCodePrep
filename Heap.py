@@ -213,9 +213,29 @@ def topKFrequent(nums, k):
 
 
 
+'''Find K closest Element'''
 
+'''Given a sorted integer array arr, two integers k and x, return the k closest integers to x. 
+The answer should also be sorted in ascending order. If there are ties, take the smaller elements.'''
+#arr = [1, 4, 10, 15, 22] k = 3 x = 11
 
+import heapq
 
+def kClosestElement(arr, k, x):
+
+    heap = []
+    for num in arr:
+        heapq.heappush(heap, (-abs(x - num), -num))
+
+        if len(heap) > k:
+            heapq.heappop(heap)
+
+    return sorted([-pair[1] for pair in heap])
+
+print(kClosestElement([7, 3, 10, 15, 22], 1, 5))
+
+# Time: O(nlogk) + O(klogk) = O((n+k)logk)
+# Space: O(k)
 
 
 
