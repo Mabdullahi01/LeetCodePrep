@@ -232,10 +232,45 @@ def kClosestElement(arr, k, x):
 
     return sorted([-pair[1] for pair in heap])
 
-print(kClosestElement([7, 3, 10, 15, 22], 1, 5))
+
 
 # Time: O(nlogk) + O(klogk) = O((n+k)logk)
 # Space: O(k)
+
+
+'''Kth largest element in an array'''
+'''Given an integer array nums and an integer k, return the kth largest element in the array.
+Note that it is the kth largest element in the sorted order, not the kth distinct element.'''
+import heapq
+def findKthLargest(nums, k):
+
+    heap = []
+
+    for num in nums:
+        heapq.heappush(heap, num)
+        if len(heap) > k:
+            heapq.heappop(heap)
+
+    return heap[0]
+
+# Time: O(nlogk)
+# Space: O(k)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
