@@ -774,6 +774,48 @@ print(groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
 # and in worst case the tuple contains all unique keys which is O(n * 26), overall O(n*m) + O(1) + O(n * 26) = O(n*m)
 
 
+'''NeetCode 7'''
+'''Valid Sudoku'''
+
+'''Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+
+Each row must contain the digits 1-9 without repetition.
+Each column must contain the digits 1-9 without repetition.
+Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.'''
+
+
+def isValidSudoku(board):
+    N = 9
+
+    # Use hash set to record the status
+    rows = [set() for _ in range(N)]
+    cols = [set() for _ in range(N)]
+    boxes = [set() for _ in range(N)]
+
+    for r in range(N):
+        for c in range(N):
+            val = board[r][c]
+            # Check if the position is filled with number
+            if val == ".":
+                continue
+
+            # Check the row
+            if val in rows[r]:
+                return False
+            rows[r].add(val)
+
+            # Check the column
+            if val in cols[c]:
+                return False
+            cols[c].add(val)
+
+            # Check the box
+            idx = (r // 3) * 3 + c // 3
+            if val in boxes[idx]:
+                return False
+            boxes[idx].add(val)
+
+    return True
 
 
 
