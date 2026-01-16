@@ -767,7 +767,7 @@ def groupAnagrams(strs):
             hashMap[key] = []
         hashMap[key].append(s)
     return hashMap.values()
-print(groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
+
 
 #Time complexity: O(n*m) The inner for loop O(m) and outer loop is O(n)
 #Space complexity: O(n*m).  hashmap stores all n strings, with each average length m, Temporary count O(1) for the array
@@ -816,6 +816,35 @@ def isValidSudoku(board):
             boxes[idx].add(val)
 
     return True
+
+import collections
+
+def isValidSudoku(board):
+    cols = collections.defaultdict(set)
+    rows = collections.defaultdict(set)
+    squares = collections.defaultdict(set)
+
+    for r in range(9):
+        for c in range(9):
+            val = board[r][c]
+            if val == ".":
+                continue
+            if (val in rows[r] or val in cols[c] or val in squares[(r // 3, c // 3)]):
+                return False
+            cols[c].add(val)
+            rows[r].add(val)
+            squares[(r // 3, c // 3)].add(val)
+    return True
+
+print(isValidSudoku([["5","3",".",".","7",".",".",".","."]
+,["6","1",".","1","9","5",".",".","."]
+,[".","9","8",".",".",".",".","6","."]
+,["8",".",".",".","6",".",".",".","3"]
+,["4",".",".","8",".","3",".",".","1"]
+,["7",".",".",".","2",".",".",".","6"]
+,[".","6",".",".",".",".","2","8","."]
+,[".",".",".","4","1","9",".",".","5"]
+,[".",".",".",".","8",".",".","7","9"]]))
 
 
 
