@@ -728,7 +728,34 @@ def productExceptSelf(nums):
 # Space: O(1) auxilliary space
 
 
+'''NeetCode 8'''
 
+'''Encode and decode string
+Design an algorithm to encode a list of strings to a string. 
+The encoded string is then sent over the network and is decoded back to the original list of strings.'''
+#input :["Hello","World"]
+# logic "5#Hello5#World, placing the length of the string at the start followed by a delimiter
+
+def encode(givenstr):
+    res = ""
+    for s in givenstr:
+        res += str(len(s)) + "#" + s
+    return res
+
+def decode(encodedstr):
+    res, i = [], 0
+
+    while i < len(encodedstr):
+        j = i
+        while encodedstr[j] != "#":
+            j += 1
+        length = int(encodedstr[i:j])
+        res.append(encodedstr[1 + j: 1 + j + length])
+        i = j + 1 + length
+    return res
+
+#Time: O(n)
+#Space: O(k)
 
 
 
