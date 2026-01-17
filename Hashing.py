@@ -187,8 +187,8 @@ Given a string sentence containing only lowercase English letters, return true i
 #COUNTING
 '''You are given a string s and an integer k. Find the length of the longest substring that contains at most k distinct characters.'''
 
-# from collections import defaultdict
-# # s = eceba k = 2
+from collections import defaultdict
+# s = eceba k = 2
 # def find_longest_substring(s, k):
 #     counts = defaultdict(int)
 #     ans = left = 0
@@ -200,9 +200,10 @@ Given a string sentence containing only lowercase English letters, return true i
 #             if counts[s[left]] == 0:
 #                 del counts[s[left]]
 #             left += 1
-#     return max(ans, right -left + 1)
+#         ans =  max(ans, right -left + 1)
+#      return ans
 # s = 'eceba'
-# k = 3
+# k = 2
 # print(find_longest_substring(s, k))
 # Time: O(n)
 # Space: O(k) The hashmap occupies O(k) space, as the algorithm will delete elements from the hash map once it grows beyond k
@@ -786,39 +787,34 @@ Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without
 
 def isValidSudoku(board):
     N = 9
-
-    # Use hash set to record the status
     rows = [set() for _ in range(N)]
     cols = [set() for _ in range(N)]
     boxes = [set() for _ in range(N)]
 
-    for r in range(N):
-        for c in range(N):
+    for r in range(len(rows)):
+        for c in range(len(cols)):
             val = board[r][c]
-            # Check if the position is filled with number
-            if val == ".":
+            if board[r][c] == ".":
                 continue
 
-            # Check the row
-            if val in rows[r]:
+            if board[r][c] in rows[r]:
                 return False
-            rows[r].add(val)
+            rows[r].add(board[r][c])
 
-            # Check the column
-            if val in cols[c]:
+            if board[r][c] in cols[c]:
                 return False
-            cols[c].add(val)
+            cols[c].add(board[r][c])
 
-            # Check the box
-            idx = (r // 3) * 3 + c // 3
-            if val in boxes[idx]:
+            if board[r][c] in boxes[ (r // 3) * 3 + c // 3]:
                 return False
-            boxes[idx].add(val)
-
+            boxes[ (r // 3) * 3 + c // 3].add(board[r][c])
     return True
 
-import collections
 
+
+
+
+import collections
 def isValidSudoku(board):
     cols = collections.defaultdict(set)
     rows = collections.defaultdict(set)
@@ -836,15 +832,76 @@ def isValidSudoku(board):
             squares[(r // 3, c // 3)].add(val)
     return True
 
-print(isValidSudoku([["5","3",".",".","7",".",".",".","."]
-,["6","1",".","1","9","5",".",".","."]
-,[".","9","8",".",".",".",".","6","."]
-,["8",".",".",".","6",".",".",".","3"]
-,["4",".",".","8",".","3",".",".","1"]
-,["7",".",".",".","2",".",".",".","6"]
-,[".","6",".",".",".",".","2","8","."]
-,[".",".",".","4","1","9",".",".","5"]
-,[".",".",".",".","8",".",".","7","9"]]))
+
+
+
+
+# print(isValidSudoku([["5","3",".",".","7",".",".",".","."]
+# ,["6",".",".","1","9","5",".",".","."]
+# ,[".","9","8",".",".",".",".","6","."]
+# ,["8",".",".",".","6",".",".",".","3"]
+# ,["4",".",".","8",".","3",".",".","1"]
+# ,["7",".",".",".","2",".",".",".","6"]
+# ,[".","6",".",".",".",".","2","8","."]
+# ,[".",".",".","4","1","9",".",".","5"]
+# ,[".",".",".",".","8",".",".","7","9"]]))
+
+# Time: O(N^2)
+# Space: O(N^2)
+
+'''Some solid concept regarding two dimensional arrays'''
+rows, cols = (5, 5)
+# # 1st approach
+# arr = [[0]*cols]*rows
+# arr[0][0] = 1
+#
+# for row in arr:
+#     print(row)
+# when 2D arrays are created this way, changing a row will affect all the other rows
+
+# 2nd approach
+# arr = [[0 for i in range(cols)] for j in range(rows)] # Better way to declare 2D arrays
+#
+# arr[0][0] = 1
+# for row in arr:
+#     print(row)
+
+
+
+
+
+
+
+'''You are given a string s and an integer k. Find the length of the longest substring that contains at most k distinct characters.'''
+s = 'eceba'
+k = 2
+
+def LengthOflongestkDistinctSubstring(s, k):
+    hashmap = {}
+
+    left = ans = 0
+
+    for right in range(len(s)):
+        if s[right] not in hashmap:
+            hashmap[s[right]] = 0
+        hashmap[s[right]] += 1
+
+        while len(hashmap) > k:
+            hashmap[s[left]] -= 1
+
+            if hashmap[s[left]] == 0:
+                del hashmap[s[left]]
+            left += 1
+
+        ans = max(ans, right - left + 1)
+
+    return ans
+
+
+# Time: O(n)
+# Space: O(k) The hashmap occupies O(k) space, as the algorithm will delete elements from the hash map once it grows beyond k
+
+
 
 
 
