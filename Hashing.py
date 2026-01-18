@@ -911,8 +911,31 @@ You must write an algorithm that runs in O(n) time.'''
 
 # input: nums = [100,4,200,1,3,2]
 # output: 4
-'''with hashset'''
+'''Brute force'''
 def longestConsecutive(nums):
+    longest = 0
+
+    for num in nums:
+        current_num = num
+        current_streak = 1
+
+        while current_num + 1 in nums:
+            current_num += 1
+            current_streak += 1
+
+        longest = max(longest, current_streak)
+
+    return longest
+
+# Time: O(n^3)
+# Space: O(1)
+
+print(longestConsecutive([100,4,200,1,3,2]))
+
+
+
+'''with hashset'''
+def llongestConsecutive(nums):
     numSet = set(nums) # O(1) lookup time
     longest = 0
 
@@ -924,7 +947,7 @@ def longestConsecutive(nums):
             longest = max(length, longest)
     return longest
 
-print(longestConsecutive([100,4,200,1,3,2]))
+
 
 #Time: O(n)
 #Space: O(n)
