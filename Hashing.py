@@ -904,6 +904,31 @@ def LengthOflongestkDistinctSubstring(s, k):
 
 
 
+'''Neetcode 9'''
+'''Longest Consecutive sequence
+Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
+You must write an algorithm that runs in O(n) time.'''
+
+# input: nums = [100,4,200,1,3,2]
+# output: 4
+'''with hashset'''
+def longestConsecutive(nums):
+    numSet = set(nums) # O(1) lookup time
+    longest = 0
+
+    for n in numSet:
+        if n - 1 not in numSet:
+            length = 0
+            while ( n + length) in numSet:
+                length += 1
+            longest = max(length, longest)
+    return longest
+
+print(longestConsecutive([100,4,200,1,3,2]))
+
+#Time: O(n)
+#Space: O(n)
+
 
 
 
