@@ -787,9 +787,8 @@ def alphaNum(c):
     return (ord('A') <= ord(c) <= ord('Z') or ord('a') <= ord(c) <= ord('z') or ord('0') <= ord(c) <= ord('9'))
 
 
-print(isPalindrome("A man, a plan, a canal: Panama"))
-
-
+#Time: O(n)
+#Space: O(1)
 
 
 
