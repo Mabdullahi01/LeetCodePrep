@@ -930,12 +930,10 @@ def longestConsecutive(nums):
 # Time: O(n^3)
 # Space: O(1)
 
-print(longestConsecutive([100,4,200,1,3,2]))
-
 
 
 '''with hashset'''
-def llongestConsecutive(nums):
+def longestConsecutive(nums):
     numSet = set(nums) # O(1) lookup time
     longest = 0
 
@@ -946,8 +944,6 @@ def llongestConsecutive(nums):
                 length += 1
             longest = max(length, longest)
     return longest
-
-
 
 #Time: O(n)
 #Space: O(n)

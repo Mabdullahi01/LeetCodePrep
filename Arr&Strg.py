@@ -758,6 +758,58 @@ def decode(encodedstr):
 #Space: O(k)
 
 
+'''Neetcode 10'''
+
+'''Valid palindrome
+A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, 
+it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+
+Given a string s, return true if it is a palindrome, or false otherwise'''
+#Input: s = "A man, a plan, a canal: Panama"
+#Output: true
+
+
+def isPalindrome(s):
+
+    L, R = 0, len(s) - 1
+
+    while L < R:
+        while L < R and not alphaNum(s[L]):
+            L += 1
+        while R > L and not alphaNum(s[R]):
+            R -= 1
+        if s[L].lower() != s[R].lower():
+            return False
+        L, R = L + 1, R - 1
+    return True
+
+def alphaNum(c):
+    return (ord('A') <= ord(c) <= ord('Z') or ord('a') <= ord(c) <= ord('z') or ord('0') <= ord(c) <= ord('9'))
+
+
+print(isPalindrome("A man, a plan, a canal: Panama"))
+
+
+
+
+
+
+'''Given a string s, return true if it is a palindrome, false otherwise'''
+#A string is a palindrome if it reads the same forward as backward
+# s = aceca
+def ifpalindrom(s):
+    right = len(s) - 1
+    left = 0
+    while left < right:
+        if s[left] != s[right]:
+            return False
+        left += 1
+        right -= 1
+    return True
+
+print(ifpalindrom('aceba'))
+
+
 
 
 
