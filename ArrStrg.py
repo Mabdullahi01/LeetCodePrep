@@ -806,8 +806,28 @@ def ifpalindrom(s):
         right -= 1
     return True
 
-print(ifpalindrom('aceba'))
 
+'''NeetCode 11'''
+
+'''Two Sum II, with sorted input array
+Given an array of integers that is already sorted in asecending order, find two numbers such that they add up to a specific target number.
+Indices are not zero based'''
+
+def twoSum(numbers, target):
+    L, R = 0, len(numbers) - 1
+
+    while L < R:
+        currSum = numbers[L] + numbers[R]
+        if currSum > target:
+            R -= 1
+        elif currSum < target:
+            L += 1
+        else:
+            return [1 + L, 1 + R]
+print(twoSum([1, 3, 4, 5, 7, 10, 11], 9))
+
+# Time: O(n)
+# Space: O(1)
 
 
 
