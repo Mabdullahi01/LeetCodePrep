@@ -824,11 +824,42 @@ def twoSum(numbers, target):
             L += 1
         else:
             return [1 + L, 1 + R]
-print(twoSum([1, 3, 4, 5, 7, 10, 11], 9))
+
 
 # Time: O(n)
 # Space: O(1)
 
+
+'''NeetCode 12'''
+'''3Sum. Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] 
+such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+Notice that the solution set must not contain duplicate triplets.'''
+
+def threeSum(nums):
+    res = []
+    nums.sort()
+
+    for i, a in enumerate(nums):
+        if i > 0 and a == nums[i - 1]:
+            continue
+
+        L, R = i + 1, len(nums) - 1
+        while L < R:
+            threeSum = a + nums[L] + nums[R]
+
+            if threeSum > 0:
+                R -= 1
+            elif threeSum < 0:
+                L += 1
+            else:
+                res.append([a, nums[L], nums[R]])
+                L += 1
+                while nums[L] == nums[L - 1] and L < R:
+                    L += 1
+    return res
+
+# Time: O(n^2)
+# Space: O(n)
 
 
 
