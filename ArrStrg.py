@@ -859,9 +859,46 @@ def threeSum(nums):
     return res
 
 # Time: O(n^2)
-# Space: O(n)
+# Space: O(1)
 
 
+
+'''NeetCode 13'''
+'''Container with Most Water'''
+'''You are given an integer array height of length n. 
+There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+Find two lines that together with the x-axis form a container, such that the container contains the most water.'''
+
+'''Brute force solution'''
+def maxArea(height):
+    res = 0
+
+    for l in range(len(height)):
+        for r in range(l + 1, len(height)):
+            area = (r - l) * min(height[l], height[r])
+            res = max(res, area)
+    return res
+#Time: O(n^2)
+#Space: O(1)
+
+
+
+'''Two pointer Solution'''
+def maxArea(height):
+    L, R = 0, len(height) - 1
+    res = 0
+
+    while(L < R):
+        area = min(height[L], height[R]) * (R - L)
+        res = max(res, area)
+        if height[L] < height[R]:
+            L += 1
+        else:
+            R -= 1
+    return res
+
+# Time: O(n)
+# Space: O(1)
 
 
 
