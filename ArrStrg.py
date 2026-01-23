@@ -901,6 +901,36 @@ def maxArea(height):
 # Space: O(1)
 
 
+'''NeetCode 14'''
+#hard
+'''Trapping Rain Water'''
+'''Given n non-negative integers representing an elevation map where the width of each bar is 1, 
+compute how much water it can trap after raining.'''
+
+def trap(height):
+
+    if not height: return 0
+    L, R = 0, len(height) - 1
+    res = 0
+
+    leftMax, rightMax = height[L], height[R]
+
+    while L < R:
+        if leftMax < rightMax:
+            L += 1
+            leftMax = max(leftMax, height[L])
+            res += leftMax - height[L]
+        else:
+            R -= 1
+            rightMax = max(rightMax, height[R])
+            res += rightMax - height[R]
+
+    return res
+
+#Time: O(n)
+#space: O(1)
+
+
 
 
 
